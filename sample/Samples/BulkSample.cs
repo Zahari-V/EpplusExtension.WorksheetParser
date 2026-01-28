@@ -35,6 +35,7 @@ public static class BulkSample
         Console.WriteLine();
         Console.WriteLine($"------------ Count: {records.Count} ------------");
         Console.WriteLine($"------------ {nameof(stopwatch)} Elapsed: {stopwatch.Elapsed} ------------");
+        Console.WriteLine($"------------ {nameof(StopwatchMeasurement.PropertySetValueStopwatch)} Elapsed: {StopwatchMeasurement.PropertySetValueStopwatch.Elapsed} ------------");
         Console.WriteLine();
     }
 }
