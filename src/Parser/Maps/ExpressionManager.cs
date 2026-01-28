@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
 
-namespace EpplusExtension.WorksheetParser.Parser.ClassMapper;
+namespace EpplusExtension.WorksheetParser.Parser.Maps;
 
 public delegate void PropertySetValueHandler(object obj, object value);
 

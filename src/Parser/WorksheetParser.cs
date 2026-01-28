@@ -25,6 +25,8 @@ public class WorksheetParser<T> where T : class, new()
         {
             string cellValue = ExecutionContext.GetCellValue(propertyMap.ColumnIndex);
 
+            StopwatchMeasurement.PropertySetValueStopwatch.Start();
+
             try
             {
                 propertyMap.SetValue(obj, cellValue);
@@ -33,6 +35,8 @@ public class WorksheetParser<T> where T : class, new()
             {
                 if (!ExecutionContext.Config.SuppressConvertionException) throw;
             }
+
+            StopwatchMeasurement.PropertySetValueStopwatch.Stop();
         }
 
         return obj;
