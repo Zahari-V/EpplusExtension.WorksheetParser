@@ -1,4 +1,5 @@
 ﻿using EpplusExtension.WorksheetParser.Constants;
+using EpplusExtension.WorksheetParser.Parser.ClassMapper;
 using System;
 using System.Reflection;
 
@@ -10,11 +11,14 @@ public class PropertyMap
     {
         PropertyInfo = propertyInfo ?? throw new ArgumentNullException($"{nameof(propertyInfo)} cannot be null!");
         CellValueHandler = WorksheetParserConverter.GetCellValueHandler(propertyInfo.PropertyType);
+        SetValueHandler = ExpressionManager.CreatePropertySetValueHandler(propertyInfo);
     }
 
     public PropertyInfo PropertyInfo { get; private init; }
 
     public CellValueHandler CellValueHandler { get; private init; }
+
+    public PropertySetValueHandler SetValueHandler { get; private init; }
 
     public int ColumnIndex { get; set; } = WorksheetParserConstant.UNDEFINED_INDEX;
 
@@ -25,6 +29,6 @@ public class PropertyMap
     public void SetValue(object obj, string cellValue)
     {
         object convertedCellValue = CellValueHandler(cellValue);
-        PropertyInfo.SetValue(obj, convertedCellValue);
+        SetValueHandler(obj, convertedCellValue);
     }
 }
